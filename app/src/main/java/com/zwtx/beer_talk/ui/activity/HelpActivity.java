@@ -35,7 +35,7 @@ public class HelpActivity extends BackToolBarActivity {
         adapter.setOnItemClickListener(new TwoSidesTxtAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                T.showShort(HelpActivity.this, position);
+                T.showShort(HelpActivity.this, position + ">>>>");
             }
         });
     }
