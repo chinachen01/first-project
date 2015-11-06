@@ -1,0 +1,15 @@
+package com.zwtx.beer_talk.constants;
+
+/**
+ *
+ */
+public class Constants {
+    /** SharedPreferences的文件名 */
+    public static String SHAREDPREFER_NAME = "beer_talk_shared";
+    /** 用户的账户 */
+    public static String USER_NAME = "user_name";
+    /** 用户的密码 */
+    public static String USER_PASSWORD = "user_password";
+    /** true代表用户第一次打开App */
+    public static String IS_DEVICE_REGIST = "is_first_open";
+}

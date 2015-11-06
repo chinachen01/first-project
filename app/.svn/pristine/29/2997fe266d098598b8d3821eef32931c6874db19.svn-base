@@ -1,0 +1,138 @@
+package com.zwtx.beer_talk.app.ui.activity;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Build;
+import android.os.Bundle;
+import android.telephony.TelephonyManager;
+import android.text.TextUtils;
+import android.view.WindowManager;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import com.baidu.android.pushservice.BasicPushNotificationBuilder;
+import com.baidu.android.pushservice.PushConstants;
+import com.baidu.android.pushservice.PushManager;
+import com.zwtx.beer_talk.R;
+import com.zwtx.beer_talk.app.constants.Constants;
+import com.zwtx.beer_talk.app.utils.MD5;
+import com.zwtx.beer_talk.app.utils.NetWorkUtils;
+import com.zwtx.beer_talk.app.widget.LoadingAnimatorView;
+
+/**
+ *
+ */
+public class LoadingActivity extends Activity {
+    private String mDeviceId;
+    LoadingAnimatorView view;
+    RelativeLayout layout;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initYunTuiSong();
+        //启动动画
+        startAnimator();
+
+        if (checkNetWork()) {
+            mDeviceId = getDeviceId();
+            SharedPreferences shared = getSharedPreferences(Constants.SHAREDPREFER_NAME, MODE_PRIVATE);
+            if (!shared.getBoolean(Constants.IS_DEVICE_REGIST, false)) {
+                //第一次打开App,将DeviceId发送到后台
+//                Log.e("tag", "DeviceId>>>>" + mDeviceId);
+                sendDeviceId();
+            }
+        }
+
+        //启动登录界面
+    }
+
+    /**
+     * 初始化云推送
+     */
+    private void initYunTuiSong() {
+        //启动云推送
+        PushManager.startWork(getApplicationContext(), PushConstants.LOGIN_TYPE_API_KEY, "dOrUWc5y47UjKMkZVrGcSXhz");
+        //设置通知栏样式
+        BasicPushNotificationBuilder cBuilder = new BasicPushNotificationBuilder();
+        cBuilder.setStatusbarIcon(R.mipmap.notification_icon);
+        PushManager.setNotificationBuilder(this, 1, cBuilder);
+    }
+
+    /**
+     * 启动Loading动画
+     */
+    private void startAnimator() {
+        view = new LoadingAnimatorView(this);
+        view.setBitmap(R.mipmap.loading_background, R.mipmap.loading_bitmap_start, R.mipmap.loading_bitmap_loading, R.mipmap.loading_bitmap_end);
+        WindowManager windowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
+        //动态图片的高度设为屏幕的1/4
+        int y = windowManager.getDefaultDisplay().getHeight() / 4;
+        view.setY(y);
+        view.setOnFinishedListener(new LoadingAnimatorView.OnFinishedListener() {
+            @Override
+            public void onFinish() {
+                //跳转到下一界面
+//                finish();
+            }
+        });
+        setContentView(view);
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        view.flag = false;//结束绘制线程
+        super.onBackPressed();
+    }
+
+    /**
+     * 检查是程序是否有网络连接
+     */
+    private boolean checkNetWork() {
+        if (!NetWorkUtils.getNetWorkState(this)) {
+            Toast.makeText(this, "当前无网络连接", Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * @return 返回一个32位的16禁止字符串, 该字符串为设备的唯一ID(通过MD5加密)
+     */
+    private String getDeviceId() {
+        //获取手机的IMEI号,可能为空
+        TelephonyManager mTelephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        String deviceId = mTelephonyManager.getDeviceId();
+        if (TextUtils.equals(deviceId, "0000000000000")) {
+            deviceId = "35" + //we make this look like a valid IMEI
+                    Build.BOARD.length() % 10 +
+                    Build.BRAND.length() % 10 +
+                    Build.CPU_ABI.length() % 10 +
+                    Build.DEVICE.length() % 10 +
+                    Build.DISPLAY.length() % 10 +
+                    Build.HOST.length() % 10 +
+                    Build.ID.length() % 10 +
+                    Build.MANUFACTURER.length() % 10 +
+                    Build.MODEL.length() % 10 +
+                    Build.PRODUCT.length() % 10 +
+                    Build.TAGS.length() % 10 +
+                    Build.TYPE.length() % 10 +
+                    Build.USER.length() % 10; //13 digits
+        }
+        return MD5.getMD5(deviceId.getBytes());
+    }
+
+    /**
+     * 通过http请求,传输设备ID到后台
+     */
+    private void sendDeviceId() {
+        //请求成功后,将标记改为false
+        SharedPreferences shared = getSharedPreferences(Constants.SHAREDPREFER_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = shared.edit();
+        editor.putBoolean(Constants.IS_DEVICE_REGIST, true);
+        editor.commit();
+    }
+}

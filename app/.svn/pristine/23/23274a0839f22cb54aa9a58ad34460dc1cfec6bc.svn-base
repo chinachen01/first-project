@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/shopping_storage_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="3dp"
+        android:paddingTop="3dp"
+        android:text="@string/shopping_storage_text_title"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/shopping_storage_edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/shopping_storage_title_text"
+        android:layout_alignParentRight="true"
+        android:clickable="true"
+        android:text="@string/shopping_storage_text_edit"
+        android:textSize="20sp" />
+
+    <View
+        android:id="@+id/shopping_sotrage_division"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_below="@id/shopping_storage_title_text"
+        android:background="@android:color/darker_gray" />
+
+    <RelativeLayout
+        android:id="@+id/shopping_storage_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <CheckBox
+            android:id="@+id/shopping_storage_all_select_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:checked="true"
+            android:text="@string/shopping_storage_all_select_text" />
+
+        <TextView
+            android:id="@+id/shopping_storage_total_price_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/shopping_storage_all_select_check"
+            android:paddingLeft="20dp"
+            android:text="0" />
+
+        <Button
+            android:id="@+id/shopping_storage_commit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="@string/shopping_storage_commit" />
+
+        <Button
+            android:id="@+id/shopping_storage_complete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/shopping_storage_commit"
+            android:layout_marginRight="10dp"
+            android:text="完成"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/shopping_storage_stuff_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/shopping_storage_subtitle"
+        android:layout_below="@id/shopping_sotrage_division"></ListView>
+
+</RelativeLayout>

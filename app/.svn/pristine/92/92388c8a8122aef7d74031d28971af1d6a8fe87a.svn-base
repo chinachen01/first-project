@@ -1,0 +1,176 @@
+package com.zwtx.beer_talk.app.widget;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.util.AttributeSet;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.view.WindowManager;
+
+/**
+ *
+ */
+public class LoadingAnimatorView extends SurfaceView implements SurfaceHolder.Callback, Runnable {
+    private SurfaceHolder holder;
+    private Bitmap bitmapStart;
+    private Bitmap bitmapLoading;
+    private Bitmap bitmapEnd;
+    private Bitmap backGround;
+    private Context context;
+    private OnFinishedListener mOnFinishedListener;
+    /**
+     * 停止自动循环的标记
+     */
+    public boolean flag = true;
+    private int heightOfBitMap;
+    private int withOfBitMap;
+    /**
+     * 图片left坐标
+     */
+    private int xOfBitMap;
+    /**
+     * 图片Top坐标
+     */
+    private int yOfBitMap;
+    /**
+     * 填充的y坐标
+     */
+    private int h;
+
+
+    public LoadingAnimatorView(Context context, AttributeSet attrs, SurfaceHolder holder) {
+        super(context);
+    }
+
+    public LoadingAnimatorView(Context context, AttributeSet attrs, int defStyleAttr, SurfaceHolder holder) {
+        super(context);
+    }
+
+    public void setOnFinishedListener(OnFinishedListener onFinishedListener) {
+        mOnFinishedListener = onFinishedListener;
+    }
+
+    /**
+     * @param background 背景图片
+     * @param start      起始求图片
+     * @param loading    加载中图片
+     * @param end        结束图片
+     */
+    public void setBitmap(int background, int start, int loading, int end) {
+        backGround = BitmapFactory.decodeResource(context.getResources(), background);
+        bitmapStart = BitmapFactory.decodeResource(context.getResources(), start);
+        bitmapLoading = BitmapFactory.decodeResource(context.getResources(), loading);
+        bitmapEnd = BitmapFactory.decodeResource(context.getResources(), end);
+    }
+
+    /**
+     * @param top 图片的y轴起始坐标
+     */
+    public void setY(int top) {
+        heightOfBitMap = bitmapStart.getHeight();//初始化y轴坐标
+        withOfBitMap = bitmapStart.getWidth();//初始化x轴坐标
+        WindowManager windowManager = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+        xOfBitMap = windowManager.getDefaultDisplay().getWidth() / 2 - withOfBitMap / 2;
+        yOfBitMap = top;
+        h = heightOfBitMap;
+    }
+
+    public LoadingAnimatorView(Context context) {
+        super(context);
+        this.setFocusable(true);
+        this.setFocusableInTouchMode(true);
+        this.holder = this.getHolder();
+        this.context = context;
+        holder.addCallback(this);
+
+    }
+
+    //改变裁剪区域
+    private void playAnimator() {
+        if (h > 0) {
+            h -= 14;
+        } else {
+            flag = false;
+            Canvas canvas = null;
+            try {
+                canvas = holder.lockCanvas();
+                if (canvas != null) {
+                    canvas.drawBitmap(bitmapEnd, xOfBitMap, yOfBitMap, null);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (holder != null) {
+                        holder.unlockCanvasAndPost(canvas);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            mOnFinishedListener.onFinish();
+        }
+    }
+
+    private void drawLoadingAnimator() {
+        Canvas canvas = null;
+        try {
+            canvas = holder.lockCanvas();
+            if (canvas != null) {
+                canvas.drawBitmap(backGround, 0, 0, null);
+                canvas.drawBitmap(bitmapStart, xOfBitMap, yOfBitMap, null);
+                //裁剪
+                canvas.clipRect(xOfBitMap, h + yOfBitMap, xOfBitMap + withOfBitMap, yOfBitMap + heightOfBitMap);
+                canvas.drawBitmap(bitmapLoading, xOfBitMap, yOfBitMap, null);
+                canvas.restore();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (holder != null) {
+                    holder.unlockCanvasAndPost(canvas);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder holder, int format, int width,
+                               int height) {
+
+    }
+
+    @Override
+    public void surfaceCreated(SurfaceHolder holder) {
+        new Thread(this).start();//开启绘制线程
+    }
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder holder) {
+
+    }
+
+    //绘制动画线程
+    @Override
+    public void run() {
+        while (flag) {
+            drawLoadingAnimator();
+            playAnimator();
+            try {
+                Thread.sleep(50);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public interface OnFinishedListener {
+        void onFinish();
+    }
+}

@@ -1,0 +1,8 @@
+package com.zwtx.beer_talk.manager;
+
+/**
+ * Created by chenyong on 2015/10/19.
+ */
+public class UpdateManager {
+
+}

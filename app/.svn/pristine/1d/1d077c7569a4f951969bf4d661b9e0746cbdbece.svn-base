@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">beer_talk</string>
+    <string name="shopping_storage_text_title">购物车</string>
+    <string name="shopping_storage_text_edit">编辑</string>
+    <string name="shopping_storage_all_select_text">全选</string>
+    <string name="shopping_storage_commit">提交</string>
+</resources>

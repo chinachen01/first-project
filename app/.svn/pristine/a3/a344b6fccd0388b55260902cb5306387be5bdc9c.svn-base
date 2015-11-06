@@ -1,0 +1,8 @@
+package com.zwtx.beer_talk.constants;
+
+/**
+ *
+ */
+public class APIconstants {
+    public static String BAIDU_API_KEY = "xTOLc5dgGoX9CfZP4FGGEE3P";
+}
