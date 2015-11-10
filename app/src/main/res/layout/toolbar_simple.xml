@@ -4,5 +4,6 @@
                                    android:layout_height="?attr/actionBarSize"
                                    android:orientation="horizontal"
                                    android:id="@+id/toolbar_simple"
+                                   android:background="?attr/colorPrimary"
     >
 </android.support.v7.widget.Toolbar>

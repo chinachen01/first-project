@@ -13,14 +13,13 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.baidu.voicerecognition.android.ui.BaiduASRDigitalDialog;
-import com.baidu.voicerecognition.android.ui.DialogRecognitionListener;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.zwtx.beer_talk.QRcode.activity.QRcodeActivity;
 import com.zwtx.beer_talk.R;
 import com.zwtx.beer_talk.constants.HttpConstants;
 import com.zwtx.beer_talk.manager.HttpManager;
 import com.zwtx.beer_talk.ui.activity.HomeActivity;
+import com.zwtx.beer_talk.ui.activity.ProductListActivity;
 import com.zwtx.beer_talk.utils.L;
 import com.zwtx.beer_talk.utils.T;
 import com.zwtx.beer_talk.yuyin.YuYinHelper;
@@ -84,27 +83,7 @@ public class HomeFragment extends Fragment {
         mDatePicker = (DatePicker) view.findViewById(R.id.home_date_picker);
         /* 初始化搜索按键 */
         mSearchBtn = (Button) view.findViewById(R.id.home_search_btn);
-        mSearchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String searchText = mSearchEdit.getText().toString().trim();
-                if (!TextUtils.isEmpty(searchText)) {
-                    HttpManager.get(HttpConstants.TEXT_SEARCH + searchText, new JsonHttpResponseHandler("UTF-8") {
-                        @Override
-                        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                            super.onSuccess(statusCode, headers, response);
-                            T.showLong(activity,response.toString());
-                            L.d(response.toString());
-                        }
-
-                        @Override
-                        public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                            super.onFailure(statusCode, headers, responseString, throwable);
-                        }
-                    });
-                }
-            }
-        });
+        mSearchBtn.setOnClickListener(new HomeClickListener());
     }
 
     private void setDaily() {
@@ -168,6 +147,25 @@ public class HomeFragment extends Fragment {
                     intent.setClass(getActivity(), QRcodeActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     getActivity().startActivityForResult(intent, HomeActivity.SCANNIN_GREQUEST_CODE);
+                    break;
+                case R.id.home_search_btn:
+                    String searchText = mSearchEdit.getText().toString().trim();
+                    if (!TextUtils.isEmpty(searchText)) {
+                        HttpManager.get(HttpConstants.TEXT_SEARCH + searchText, new JsonHttpResponseHandler("UTF-8") {
+                            @Override
+                            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                                super.onSuccess(statusCode, headers, response);
+                                T.showLong(activity,response.toString());
+                                L.d(response.toString());
+                            }
+
+                            @Override
+                            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                                super.onFailure(statusCode, headers, responseString, throwable);
+                            }
+                        });
+                    }
+                    ProductListActivity.startActivity(getActivity(), ProductListActivity.TAG_SEARCH);
                     break;
             }
         }

@@ -3,7 +3,7 @@ package com.zwtx.beer_talk.bean;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class StuffBean {
+public class ProductBean {
 	/** 商品的标题 */
 	private String title;
 	/** 商品的价格 */

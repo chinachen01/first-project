@@ -20,7 +20,6 @@ public class FullScreenBaseActivity extends Activity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
     }
 
     @Override

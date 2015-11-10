@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.zwtx.beer_talk.R;
-import com.zwtx.beer_talk.bean.TwoSidesTxtHolder;
+import com.zwtx.beer_talk.adapter.holder.TwoSidesTxtHolder;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -15,11 +15,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zwtx.beer_talk.R;
-import com.zwtx.beer_talk.bean.StuffBean;
+import com.zwtx.beer_talk.bean.ProductBean;
 
 public class ShoppingStorageAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
-    private ArrayList<StuffBean> mList = new ArrayList<>();
+    private ArrayList<ProductBean> mList = new ArrayList<>();
     private OnCallBackListener mCallBackListener;
     private boolean mIsChecked = true;
     private boolean mIsEdit = false;
@@ -29,7 +29,7 @@ public class ShoppingStorageAdapter extends BaseAdapter {
         mInflater = LayoutInflater.from(context);
     }
 
-    public void setDataChange(ArrayList<StuffBean> list) {
+    public void setDataChange(ArrayList<ProductBean> list) {
         mList = list;
         notifyDataSetChanged();
     }
@@ -44,7 +44,7 @@ public class ShoppingStorageAdapter extends BaseAdapter {
      * @param flag
      */
     public void setAllItemCheck(boolean flag) {
-        for (StuffBean bean : mList) {
+        for (ProductBean bean : mList) {
             bean.setIsChecked(flag);
         }
         notifyDataSetChanged();
@@ -66,7 +66,7 @@ public class ShoppingStorageAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public ArrayList<StuffBean> getData() {
+    public ArrayList<ProductBean> getData() {
         return mList;
     }
 
@@ -181,7 +181,7 @@ public class ShoppingStorageAdapter extends BaseAdapter {
 
     private void updateTotalPrice() {
         float totalPrice = 0;
-        for (StuffBean bean : mList) {
+        for (ProductBean bean : mList) {
             if (bean.getIsChecked()) {
                 totalPrice += bean.getPrice()
                         * bean.getCount();

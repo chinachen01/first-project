@@ -1,11 +1,13 @@
 package com.zwtx.beer_talk.ui.base;
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 
 import com.zwtx.beer_talk.R;
 
@@ -18,6 +20,11 @@ public abstract class BackToolBarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityCollector.getInstance().add(this);//添加Activity到集合
+        //需要在布局文件中设置: android:fitsSystemWindows="true"  android:clipToPadding="true"
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        }
         setView();
             /* 初始化Toolbar */
         toolbar = (Toolbar) findViewById(R.id.toolbar_simple);
@@ -41,6 +48,7 @@ public abstract class BackToolBarActivity extends AppCompatActivity {
 
     /**
      * 设置ContentView
+     * 你应该在此方法中调用setContentView取代在onCreate中
      */
     public abstract void setView();
 

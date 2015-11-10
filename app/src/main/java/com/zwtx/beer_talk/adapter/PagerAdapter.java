@@ -7,9 +7,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomePageAdapter extends FragmentPagerAdapter{
+public class PagerAdapter extends FragmentPagerAdapter{
     private List<Fragment> list = new ArrayList<>();
-    public HomePageAdapter(FragmentManager fm) {
+    public PagerAdapter(FragmentManager fm) {
         super(fm);
     }
     /**
@@ -27,6 +27,6 @@ public class HomePageAdapter extends FragmentPagerAdapter{
 
     @Override
     public int getCount() {
-        return list.size();
+        return list == null ? 0 :list.size();
     }
 }

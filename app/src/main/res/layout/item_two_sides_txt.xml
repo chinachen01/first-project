@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:id="@+id/item_divider"
-        android:background="@color/divider"
+        android:background="@color/divider_black"
         android:layout_below="@id/item_left_txt"
         />
 </RelativeLayout>

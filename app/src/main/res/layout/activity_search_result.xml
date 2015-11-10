@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/selector_back_btn"
+            android:text="@string/title_back"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_big"
+            android:padding="10dp"
+            android:clickable="true"
+            android:id="@+id/search_result_click_txt"
+            />
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:id="@+id/search_result_group"
+            >
+            <RadioButton
+                style="@style/Search_result_radio_btn"
+                android:text="概述"
+                />     <RadioButton
+                style="@style/Search_result_radio_btn"
+                android:text="详情"
+                />     <RadioButton
+                style="@style/Search_result_radio_btn"
+                android:text="经销商"
+                />     <RadioButton
+                style="@style/Search_result_radio_btn"
+                android:text="商城购买"
+                />
+        </RadioGroup>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider_gray"
+        />
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/search_result_pager"
+        />
+</LinearLayout>

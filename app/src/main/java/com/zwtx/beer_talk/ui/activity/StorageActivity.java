@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.zwtx.beer_talk.R;
 import com.zwtx.beer_talk.adapter.ShoppingStorageAdapter;
-import com.zwtx.beer_talk.bean.StuffBean;
+import com.zwtx.beer_talk.bean.ProductBean;
 
 public class StorageActivity extends Activity {
 	private ListView mShoppingStorageListView;
@@ -85,8 +85,8 @@ public class StorageActivity extends Activity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.shopping_storage_commit:
-                    ArrayList<StuffBean> list = mAdapter.getData();
-                    for (StuffBean bean : list) {
+                    ArrayList<ProductBean> list = mAdapter.getData();
+                    for (ProductBean bean : list) {
                         Log.d("tag", "标题是:" + bean.getTitle() + "数量是:" + bean.getCount() + "价格是:" + mTotalText.getText());
                     }
                     break;
@@ -112,63 +112,63 @@ public class StorageActivity extends Activity {
     }
 
     //网络获取购物车信息
-    private ArrayList<StuffBean> getData() {
-		ArrayList<StuffBean> list = new ArrayList<StuffBean>();
-		StuffBean bean = new StuffBean();
+    private ArrayList<ProductBean> getData() {
+		ArrayList<ProductBean> list = new ArrayList<ProductBean>();
+		ProductBean bean = new ProductBean();
 		bean.setCount(1);
 		bean.setImage(R.drawable.listimage1);
 		bean.setPrice(1);
 		bean.setTitle("火锅");
 		list.add(bean);
-		bean = new StuffBean();
+		bean = new ProductBean();
 		bean.setCount(1);
 		bean.setImage(R.drawable.listimage2);
 		bean.setPrice(1);
 		bean.setTitle("中餐");
 		list.add(bean);
-		bean = new StuffBean();
+		bean = new ProductBean();
 		bean.setCount(1);
 		bean.setImage(R.drawable.listimage3);
 		bean.setPrice(1);
 		bean.setTitle("西餐");
 		list.add(bean);
-		bean = new StuffBean();
+		bean = new ProductBean();
 		bean.setCount(1);
 		bean.setImage(R.drawable.listimage4);
 		bean.setPrice(1);
 		bean.setTitle("寿司");
 		list.add(bean);
-		bean = new StuffBean();
+		bean = new ProductBean();
 		bean.setCount(1);
 		bean.setImage(R.drawable.listimage2);
 		bean.setPrice(1);
 		bean.setTitle("鱼刺");
 		list.add(bean);
-		bean = new StuffBean();
+		bean = new ProductBean();
 		bean.setCount(1);
 		bean.setImage(R.drawable.listimage3);
 		bean.setPrice(1);
 		bean.setTitle("苹果");
 		list.add(bean);
-		bean = new StuffBean();
+		bean = new ProductBean();
 		bean.setCount(1);
 		bean.setImage(R.drawable.listimage4);
 		bean.setPrice(1);
 		bean.setTitle("香蕉");
 		list.add(bean);
-		bean = new StuffBean();
+		bean = new ProductBean();
 		bean.setCount(1);
 		bean.setImage(R.drawable.listimage2);
 		bean.setPrice(1);
 		bean.setTitle("栗子");
 		list.add(bean);
-		bean = new StuffBean();
+		bean = new ProductBean();
 		bean.setCount(1);
 		bean.setImage(R.drawable.listimage3);
 		bean.setPrice(1);
 		bean.setTitle("橘子");
 		list.add(bean);
-		bean = new StuffBean();
+		bean = new ProductBean();
 		bean.setCount(1);
 		bean.setImage(R.drawable.listimage4);
 		bean.setPrice(1);

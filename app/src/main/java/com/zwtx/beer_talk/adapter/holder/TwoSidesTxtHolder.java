@@ -1,4 +1,4 @@
-package com.zwtx.beer_talk.bean;
+package com.zwtx.beer_talk.adapter.holder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

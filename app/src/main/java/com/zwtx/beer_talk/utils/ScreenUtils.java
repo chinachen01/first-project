@@ -2,11 +2,14 @@ package com.zwtx.beer_talk.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
+
+import com.zwtx.beer_talk.R;
 
 /** 
  * 获得屏幕相关的辅助类
@@ -119,6 +122,20 @@ public class ScreenUtils
         view.destroyDrawingCache();  
         return bp;  
   
-    }  
-  
+    }
+
+    /**
+     * 获取Toolbar的高度
+     * @param context
+     * @return
+     */
+    public static int getToolbarHeight(Context context) {
+        final TypedArray styledAttributes = context.getTheme().obtainStyledAttributes(
+                new int[]{R.attr.actionBarSize});
+        int toolbarHeight = (int) styledAttributes.getDimension(0, 0);
+        styledAttributes.recycle();
+
+        return toolbarHeight;
+    }
+
 }  

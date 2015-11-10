@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/selector_item_press"
+                android:padding="20dp"
+                android:clickable="true"
+    >
+
+    <ImageView
+        android:id="@+id/item_search_stuff_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/test_stuff"
+
+        />
+
+    <TextView
+        android:id="@+id/item_search_stuff_title_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/item_search_stuff_image"
+        android:text="title"
+        android:textSize="@dimen/text_middle"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:id="@+id/item_search_stuff_content_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/item_search_stuff_image"
+        android:layout_alignLeft="@id/item_search_stuff_title_txt"
+        android:maxLines="2"
+        android:text="content"
+        android:textSize="@dimen/text_middle"
+        />
+
+    <View
+        android:id="@+id/item_search_stuff_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/item_search_stuff_image"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/black"
+        />
+
+</RelativeLayout>
