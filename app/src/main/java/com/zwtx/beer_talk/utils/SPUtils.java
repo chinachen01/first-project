@@ -9,14 +9,13 @@ import java.util.Map;
 
 public class SPUtils  
 {  
-    /** 
-     * 保存在手机里面的文件名
+    /**
+     * the name of saving file
      */
     public static final String FILE_NAME = "share_data";
 
     /**
-     * 保存数据的方法，我们需要拿到保存数据的具体类型，然后根据类型调用不同的保存方法
-     *
+     *the method of saving data, we should get the type of the saving data, then according to the type we can call the saving method
      * @param context
      * @param key
      * @param object
@@ -52,8 +51,7 @@ public class SPUtils
     }
 
     /**
-     * 得到保存数据的方法，我们根据默认值得到保存的数据的具体类型，然后调用相对于的方法获取值
-     *
+     *the method of getting data,we should accord the default value to get the type of saving data,the call the right method
      * @param context
      * @param key
      * @param defaultObject
@@ -85,7 +83,7 @@ public class SPUtils
     }
 
     /**
-     * 移除某个key值已经对应的值
+     * remove a key
      * @param context
      * @param key
      */
@@ -99,7 +97,7 @@ public class SPUtils
     }
 
     /**
-     * 清除所有数据
+     * clear all data
      * @param context
      */
     public static void clear(Context context)
@@ -112,7 +110,7 @@ public class SPUtils
     }
 
     /**
-     * 查询某个key是否已经存在
+     * check the preferences if it contains the key
      * @param context
      * @param key
      * @return
@@ -125,8 +123,7 @@ public class SPUtils
     }
 
     /**
-     * 返回所有的键值对
-     *
+     *return all key - value
      * @param context
      * @return
      */
@@ -137,20 +134,10 @@ public class SPUtils
         return sp.getAll();
     }
 
-    /**
-     * 创建一个解决SharedPreferencesCompat.apply方法的一个兼容类
-     *
-     * @author zhy
-     *
-     */
     private static class SharedPreferencesCompat
     {
         private static final Method sApplyMethod = findApplyMethod();
 
-        /**
-         * 反射查找apply的方法
-         * @return
-         */
         @SuppressWarnings({ "unchecked", "rawtypes" })
         private static Method findApplyMethod()
         {
@@ -165,12 +152,7 @@ public class SPUtils
             return null;
         }
 
-        /**
-         * 如果找到则使用apply执行，否则使用commit
-         *  
-         * @param editor 
-         */  
-        public static void apply(SharedPreferences.Editor editor)  
+        public static void apply(SharedPreferences.Editor editor)
         {  
             try  
             {  

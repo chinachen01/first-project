@@ -14,19 +14,19 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.zwtx.beer_talk.R;
-import com.zwtx.beer_talk.adapter.SearchStuffAdapter;
+import com.zwtx.beer_talk.adapter.ItemProductAdapter;
 import com.zwtx.beer_talk.adapter.StoryAdapter;
 import com.zwtx.beer_talk.bean.SearchProductBean;
 import com.zwtx.beer_talk.bean.StoryBean;
 import com.zwtx.beer_talk.ui.base.BackToolBarActivity;
-import com.zwtx.beer_talk.utils.T;
 import com.zwtx.beer_talk.widget.HidingRecyclerViewScrollListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 界面组成由Toolbar,fab(可滑动隐藏显示),RecyclerView组成
+ * 显示产品List的界面(搜索结果,推荐等)
+ * 界面由Toolbar,fab(可滑动隐藏显示),RecyclerView组成
  */
 public class ProductListActivity extends BackToolBarActivity {
     public static final String TAG = "tag";
@@ -77,10 +77,10 @@ public class ProductListActivity extends BackToolBarActivity {
     private void initRecycler() {
         switch (mTag) {
             case TAG_SEARCH:
-                SearchStuffAdapter searchStuffAdapter = new SearchStuffAdapter();
-                mRecycler.setAdapter(searchStuffAdapter);
-                searchStuffAdapter.setDadaChanged(getResultList());
-                searchStuffAdapter.setOnItemClickListener(new SearchStuffAdapter.OnItemClickListener() {
+                ItemProductAdapter searchProductAdapter = new ItemProductAdapter();
+                mRecycler.setAdapter(searchProductAdapter);
+                searchProductAdapter.setDadaChanged(getResultList());
+                searchProductAdapter.setOnItemClickListener(new ItemProductAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(int position) {
                         //传递uid到下一个Activity,暂时先写死

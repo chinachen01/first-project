@@ -16,6 +16,7 @@
         android:layout_marginTop="40dp"
         android:text="@string/home_help_txt"
         android:textSize="24sp"
+        android:textColor="@color/text_color_black"
         android:textStyle="bold"/>
 
     <LinearLayout
@@ -53,10 +54,11 @@
         android:layout_width="260dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@drawable/shape_border_txt"
+        android:background="@drawable/shape_normal_border"
         android:gravity="center"
         android:paddingBottom="15dp"
         android:paddingTop="15dp"
+        android:textColor="@color/text_color_black"
         android:text="@string/home_guid_mode_txt"
         android:textSize="22sp"/>
 
@@ -75,7 +77,7 @@
             android:paddingBottom="10dp"
             android:paddingLeft="10dp"
             android:layout_weight="2"
-            android:background="@drawable/shape_border_txt"/>
+            android:background="@drawable/shape_normal_border"/>
 
         <Button
             android:layout_width="0dp"
@@ -92,16 +94,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:gravity="center"
+        android:textColor="@color/text_color_black"
         android:text="我们拥有全球3000多种酒类信息\n\n带你进入酒类世界"
         android:textSize="18sp"/>
-    <DatePicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        android:id="@+id/home_date_picker"
-        >
-
-    </DatePicker>
     </LinearLayout>
 </ScrollView>

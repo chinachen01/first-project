@@ -37,7 +37,6 @@ public class HomeFragment extends Fragment {
     private TextView mCodeTxt, mVoiceTxt;
     private YuYinHelper helper;
     private HomeActivity activity;
-    private DatePicker mDatePicker;
     private Button mSearchBtn;
 
     public static HomeFragment newInstance() {
@@ -51,7 +50,6 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         initView(view);
-        setDaily();
         return view;
     }
 
@@ -79,35 +77,11 @@ public class HomeFragment extends Fragment {
         mCodeTxt = (TextView) view.findViewById(R.id.home_code_click_txt);
         mVoiceTxt.setOnClickListener(new HomeClickListener());
         mCodeTxt.setOnClickListener(new HomeClickListener());
-        /* 初始化datePicker */
-        mDatePicker = (DatePicker) view.findViewById(R.id.home_date_picker);
         /* 初始化搜索按键 */
         mSearchBtn = (Button) view.findViewById(R.id.home_search_btn);
         mSearchBtn.setOnClickListener(new HomeClickListener());
     }
 
-    private void setDaily() {
-        Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(calendar.YEAR);
-        int month = calendar.get(calendar.MONTH);
-        int day = calendar.get(calendar.DAY_OF_MONTH);
-        mDatePicker.init(year, month, day, new DatePicker.OnDateChangedListener() {
-            @Override
-            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                String daily = monthOfYear + 1 + "月" + dayOfMonth + "日";
-                T.showShort(getActivity(), daily);
-                HttpManager.get(HttpConstants.DRINK_DATE,new JsonHttpResponseHandler("UTF-8"){
-                    @Override
-                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                        super.onSuccess(statusCode, headers, response);
-                        T.showLong(activity, response.toString());
-                        L.d(response.toString());
-                    }
-                });
-
-            }
-        });
-    }
 
     /**
      * 启动语音识别

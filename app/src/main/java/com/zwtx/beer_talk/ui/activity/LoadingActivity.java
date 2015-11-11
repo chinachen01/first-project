@@ -22,7 +22,7 @@ import com.zwtx.beer_talk.utils.NetWorkUtils;
 import com.zwtx.beer_talk.widget.LoadingAnimatorView;
 
 /**
- *
+ *APP加载界面
  */
 public class LoadingActivity extends Activity {
     private String mDeviceId;

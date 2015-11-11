@@ -12,6 +12,7 @@
         android:layout_centerHorizontal="true"
         android:paddingBottom="3dp"
         android:paddingTop="3dp"
+        android:textColor="@color/text_color_black"
         android:text="@string/shopping_storage_text_title"
         android:textSize="24sp" />
 
@@ -22,6 +23,7 @@
         android:layout_alignBottom="@id/shopping_storage_title_text"
         android:layout_alignParentRight="true"
         android:clickable="true"
+        android:textColor="@color/text_color_black"
         android:text="@string/shopping_storage_text_edit"
         android:textSize="20sp" />
 

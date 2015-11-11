@@ -11,10 +11,8 @@ import android.view.WindowManager;
 
 import com.zwtx.beer_talk.R;
 
-/** 
- * 获得屏幕相关的辅助类
- *
- *
+/**
+ * the help class of Screen
  *
  */
 public class ScreenUtils
@@ -26,7 +24,7 @@ public class ScreenUtils
     }
 
     /**
-     * 获得屏幕宽度
+     * get the width of screen
      * @param context
      * @return
      */
@@ -40,7 +38,7 @@ public class ScreenUtils
     }
 
     /**
-     * 获得屏幕高度
+     * get the height of screen
      * @param context
      * @return
      */
@@ -54,7 +52,7 @@ public class ScreenUtils
     }
 
     /**
-     * 获得状态栏的高度
+     * get the height of statue bar
      *
      * @param context
      * @return
@@ -78,7 +76,7 @@ public class ScreenUtils
     }
 
     /**
-     * 获取当前屏幕截图，包含状态栏
+     * get the PriSc (including statue bar)
      *
      * @param activity
      * @return
@@ -99,12 +97,12 @@ public class ScreenUtils
     }
 
     /**
-     * 获取当前屏幕截图，不包含状态栏
-     *  
-     * @param activity 
-     * @return 
-     */  
-    public static Bitmap snapShotWithoutStatusBar(Activity activity)  
+     *  get the PriSc (not including statue bar)
+     *
+     * @param activity
+     * @return
+     */
+    public static Bitmap snapShotWithoutStatusBar(Activity activity)
     {  
         View view = activity.getWindow().getDecorView();  
         view.setDrawingCacheEnabled(true);  
@@ -125,7 +123,7 @@ public class ScreenUtils
     }
 
     /**
-     * 获取Toolbar的高度
+     * get the height of toolbar
      * @param context
      * @return
      */

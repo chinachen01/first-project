@@ -5,8 +5,8 @@ import android.os.StatFs;
 
 import java.io.File;
 
-/** 
- * SD卡相关的辅助类
+/**
+ * the help class of sd card
  */
 public class SDCardUtils
 {
@@ -17,8 +17,7 @@ public class SDCardUtils
     }
 
     /**
-     * 判断SDCard是否可用
-     *
+     * charge the SDCard
      * @return
      */
     public static boolean isSDCardEnable()
@@ -29,7 +28,7 @@ public class SDCardUtils
     }
 
     /**
-     * 获取SD卡路径
+     * get the path of SDCard
      * @return
      */
     public static String getSDCardPath()
@@ -39,7 +38,7 @@ public class SDCardUtils
     }
 
     /**
-     * 获取SD卡的剩余容量 单位byte
+     *get SDCard the left capacity (byte)
      * @return
      */
     public static long getSDCardAllSize()
@@ -47,9 +46,7 @@ public class SDCardUtils
         if (isSDCardEnable())
         {
             StatFs stat = new StatFs(getSDCardPath());
-            // 获取空闲的数据块的数量
             long availableBlocks = (long) stat.getAvailableBlocks() - 4;
-            // 获取单个数据块的大小（byte）
             long freeBlocks = stat.getAvailableBlocks();
             return freeBlocks * availableBlocks;
         }
@@ -57,18 +54,17 @@ public class SDCardUtils
     }
 
     /**
-     * 获取指定路径所在空间的剩余可用容量字节数，单位byte
+     * 获get SDCard the left capacity of path
      * @param filePath
-     * @return 容量字节 SDCard可用空间，内部存储可用空间
+     * @return
      */
     public static long getFreeBytes(String filePath)
     {
-        // 如果是sd卡的下的路径，则获取sd卡可用容量
         if (filePath.startsWith(getSDCardPath()))
         {
             filePath = getSDCardPath();
         } else
-        {// 如果是内部存储的路径，则获取内存存储的可用容量
+        {
             filePath = Environment.getDataDirectory().getAbsolutePath();
         }
         StatFs stat = new StatFs(filePath);
@@ -77,10 +73,10 @@ public class SDCardUtils
     }
 
     /**
-     * 获取系统存储路径
+     * get root directory path of SDCard
      * @return
-     */  
-    public static String getRootDirectoryPath()  
+     */
+    public static String getRootDirectoryPath()
     {  
         return Environment.getRootDirectory().getAbsolutePath();  
     }  

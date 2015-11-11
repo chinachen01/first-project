@@ -3,9 +3,6 @@ package com.zwtx.beer_talk.utils;
 import android.content.Context;
 import android.widget.Toast;
 
-/**
- * Toast统一管理类
- */
 public class T
 {
 
@@ -18,7 +15,7 @@ public class T
     public static boolean isShow = true;
 
     /**
-     * 短时间显示Toast
+     * show Toast in a short time
      *
      * @param context
      * @param message
@@ -30,7 +27,7 @@ public class T
     }
 
     /**
-     * 长时间显示Toast
+     * show Toast in a long time
      *
      * @param context
      * @param message
@@ -43,7 +40,7 @@ public class T
 
 
     /**
-     * 自定义显示Toast时间
+     * show Toast time in a custom time
      *
      * @param context
      * @param message

@@ -1,11 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-    <TextView
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="summary"
-        />
-</LinearLayout>
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        >
+
+        <ImageView
+            android:id="@+id/summary_title_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@drawable/test_summary"
+            />
+
+        <TextView
+            android:id="@+id/summary_title_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="52°五粮液股份公司锦上添花500ml"
+            android:textSize="@dimen/text_big"
+            android:textStyle="bold"
+            />
+
+        <RatingBar
+            android:id="@+id/summary_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            />
+
+        <TextView
+            android:id="@+id/summary_content_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="条形码:69165487979\n\n价格区间:¥320.0-580.0\n\n产地:中国 宜宾\n\n酒厂:宜宾五粮液股份有限公司\n\n酒精度:52°\n\n原材料:高粱 小麦\n\n容量:500ml"
+            android:textSize="@dimen/text_middle"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/divider_gray"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="类似产品"
+            android:textSize="@dimen/text_middle"
+            android:textStyle="bold"
+            />
+
+        <com.zwtx.beer_talk.widget.MeasureListView
+            android:id="@+id/summary_similar_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            />
+    </LinearLayout>
+
+</ScrollView>

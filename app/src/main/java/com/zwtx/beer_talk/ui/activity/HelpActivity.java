@@ -15,6 +15,9 @@ import com.zwtx.beer_talk.utils.T;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 帮助界面
+ */
 public class HelpActivity extends BackToolBarActivity {
     private RecyclerView mRecyclerView;
     @Override

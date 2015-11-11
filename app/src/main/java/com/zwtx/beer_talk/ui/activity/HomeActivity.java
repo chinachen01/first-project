@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 主界面,由ViewPager(含3个Fragment)和RadioGroup构成
+ * APP首页,由ViewPager(含3个Fragment)和RadioGroup构成
  */
 public class HomeActivity extends BaseFragmentActivity {
     private ViewPager mViewPage;

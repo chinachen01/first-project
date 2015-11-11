@@ -10,7 +10,7 @@ import com.zwtx.beer_talk.adapter.holder.SearchStuffHolder;
 import com.zwtx.beer_talk.bean.SearchProductBean;
 
 import java.util.List;
-public class SearchStuffAdapter extends RecyclerView.Adapter<SearchStuffHolder> {
+public class ItemProductAdapter extends RecyclerView.Adapter<SearchStuffHolder> {
     public interface OnItemClickListener {
         void onItemClick(int position);
     }
@@ -26,7 +26,7 @@ public class SearchStuffAdapter extends RecyclerView.Adapter<SearchStuffHolder> 
     }
     @Override
     public SearchStuffHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_search_stuff, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_search_product, parent, false);
         return new SearchStuffHolder(view);
     }
 

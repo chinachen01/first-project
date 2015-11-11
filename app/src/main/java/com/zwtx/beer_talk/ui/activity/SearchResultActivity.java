@@ -25,6 +25,9 @@ import com.zwtx.beer_talk.ui.fragment.SearchResultSummaryFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 搜索结果界面
+ */
 public class SearchResultActivity extends BaseFragmentActivity{
     public static final String UID = "uid";
     private TextView mBackTxt;

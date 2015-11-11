@@ -15,7 +15,7 @@
         <item name="android:paddingBottom">10dp</item>
     </style>
     <style name="home_radio_btn" parent="radio_btn">
-        <item name="android:background">@drawable/shape_border_txt</item>
+        <item name="android:background">@drawable/shape_normal_border</item>
     </style>
 
     <style name="Search_result_radio_btn" parent="radio_btn"/>
@@ -31,6 +31,11 @@
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:padding">20dp</item>
+    </style>
+    <!-- 弹窗的动画效果-->
+    <style name="AnimationPreView">
+        <item name="android:windowEnterAnimation">@anim/window_in</item>
+        <item name="android:windowExitAnimation">@anim/window_out</item>
     </style>
 
 </resources>

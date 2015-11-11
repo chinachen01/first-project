@@ -2,13 +2,11 @@ package com.zwtx.beer_talk.ui.activity;
 
 import java.util.ArrayList;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -18,8 +16,12 @@ import android.widget.TextView;
 import com.zwtx.beer_talk.R;
 import com.zwtx.beer_talk.adapter.ShoppingStorageAdapter;
 import com.zwtx.beer_talk.bean.ProductBean;
+import com.zwtx.beer_talk.ui.base.BaseActivity;
 
-public class StorageActivity extends Activity {
+/**
+ * 购物车界面
+ */
+public class ShoppingCartActivity extends BaseActivity {
 	private ListView mShoppingStorageListView;
 	private TextView mTotalText;
 	private CheckBox mAllSelectCheck;
@@ -29,7 +31,6 @@ public class StorageActivity extends Activity {
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_shopping_storage);
 		init();
 	}
@@ -107,7 +108,7 @@ public class StorageActivity extends Activity {
      * @param context
      */
     public static void startActivity(Context context) {
-        Intent intent = new Intent(context, StorageActivity.class);
+        Intent intent = new Intent(context, ShoppingCartActivity.class);
         context.startActivity(intent);
     }
 

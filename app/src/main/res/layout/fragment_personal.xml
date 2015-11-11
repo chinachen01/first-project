@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:background="@drawable/shape_border_txt"
+                android:background="@drawable/shape_normal_border"
                 android:text="个人资料"
                 />
         </RelativeLayout>
@@ -136,7 +136,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:background="@drawable/shape_border_txt"
+                    android:background="@drawable/shape_normal_border"
                     android:gravity="center"
                     android:text="待付款"
                     />
@@ -145,7 +145,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/shape_border_txt"
+                    android:background="@drawable/shape_normal_border"
                     android:gravity="center"
                     android:text="待收货"
                     />
@@ -154,7 +154,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:background="@drawable/shape_border_txt"
+                    android:background="@drawable/shape_normal_border"
                     android:gravity="center"
                     android:text="待评价"
                     />

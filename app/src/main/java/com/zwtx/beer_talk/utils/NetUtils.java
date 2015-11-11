@@ -7,8 +7,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-/** 
- * 跟网络相关的工具类
+/**
+ * the help class of Net
  */
 public class NetUtils
 {
@@ -19,7 +19,7 @@ public class NetUtils
     }
 
     /**
-     * 判断网络是否连接
+     * judge the internet
      * @param context
      * @return
      */
@@ -45,7 +45,7 @@ public class NetUtils
     }
 
     /**
-     * 判断是否是wifi连接
+     * judge the wifi
      */
     public static boolean isWifi(Context context)
     {
@@ -59,9 +59,9 @@ public class NetUtils
     }
 
     /**
-     * 打开网络设置界面
-     */  
-    public static void openSetting(Activity activity)  
+     * open the net setting
+     */
+    public static void openSetting(Activity activity)
     {  
         Intent intent = new Intent("/");  
         ComponentName cm = new ComponentName("com.android.settings",  

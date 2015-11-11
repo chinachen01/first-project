@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/product_detail_ly"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_border_btn"
+            android:text="商城"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_border_btn"
+            android:text="客服"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/selector_border_btn"
+            android:id="@+id/product_detail_buy_btn"
+            android:text="收藏"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@drawable/selector_border_yellow_btn"
+            android:text="加入购物车"
+            android:textColor="@android:color/white"
+            android:id="@+id/product_detail_shopping_cart_btn"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="@drawable/selector_border_red_btn"
+            android:text="立即购买"
+            android:textColor="@android:color/white"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_above="@id/product_detail_ly"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <ImageView
+            android:id="@+id/product_detail_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/test_summary"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/product_detail_title_txt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="test"
+                android:textColor="@color/text_color_black"
+                />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="20dp"
+                android:background="@color/divider_gray"
+                />
+
+            <Button
+                android:id="@+id/product_detail_share_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_normal_red_btn"
+                android:text="分享"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/text_middle"
+                />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider_gray"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            >
+
+            <TextView
+                android:id="@+id/product_detail_price_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¥ 328.0"
+                android:textColor="@android:color/holo_red_light"
+
+                />
+
+            <TextView
+                android:id="@+id/product_detail_discount_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:text="已优惠¥ 129.00"
+                android:textColor="@android:color/holo_red_light"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/product_detail_discount_txt"
+                android:background="@drawable/shape_normal_red"
+                android:text="限时购"
+                android:textColor="@android:color/white"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/product_detail_price_txt"
+                android:layout_marginTop="20dp"
+                android:text="商品评价"
+                android:textColor="@color/text_color_black"
+                android:textSize="@dimen/text_middle"
+                />
+
+            <TextView
+                android:id="@+id/product_detail_evaluation_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/product_detail_price_txt"
+                android:layout_marginTop="20dp"
+                android:text="全部评价(237)"
+                android:textColor="@color/text_color_black"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/product_detail_evaluation_txt"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/divider_gray"/>
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/product_detail_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+
+            >
+        </ListView>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -20,5 +20,13 @@ public class BaseActivity extends Activity {
         super.onDestroy();
         ActivityCollector.getInstance().remove(this);//从结合中移除activity
     }
-
+    /**
+     * 遍历所有集合中所有Activity并销毁
+     */
+    public static void finishAll() {
+        for (Activity activity :  ActivityCollector.getInstance()) {
+            if (activity != null)
+                activity.finish();
+        }
+    }
 }
