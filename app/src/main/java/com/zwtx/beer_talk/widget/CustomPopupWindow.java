@@ -13,29 +13,19 @@ import com.zwtx.beer_talk.utils.ScreenUtils;
 
 public class CustomPopupWindow extends PopupWindow {
     private View contentView;
-    private int height = -1;
-    private int width = -1;
 
-    public CustomPopupWindow(Context context, View contentView) {
+    public CustomPopupWindow(View contentView, int width, int height) {
+        super(contentView, width, height);
         this.contentView = contentView;
-        int h = ScreenUtils.getScreenHeight(context);
-        int w = ScreenUtils.getScreenWidth(context);
-        this.setContentView(contentView);
-        //设置弹窗默认为屏幕的宽
-        if (height == -1)
-            this.setWidth(w);
-        //设置弹窗默认为屏幕的高
-        if (width == -1)
-            this.setHeight(h / 2);
         this.setFocusable(true);
         this.setOutsideTouchable(true);
         this.update();
         /* 设置一个半透明背景,点击back或其他地方才能取消弹窗*/
-        ColorDrawable dw = new ColorDrawable(0000000000);
+        ColorDrawable dw = new ColorDrawable(0xb0000000);
         this.setBackgroundDrawable(dw);
         /* 设置动画效果 */
         this.setAnimationStyle(R.style.AnimationPreView);
-        /* 设置监听事件 */
+                /* 设置监听事件 */
 //        LinearLayout addTaskLayout = (LinearLayout) contentView
 //                .findViewById(R.id.add_task_layout);
 //        LinearLayout teamMemberLayout = (LinearLayout) contentView
@@ -56,26 +46,7 @@ public class CustomPopupWindow extends PopupWindow {
 //            }
 //        });
     }
-
-//    /**
-//     * 显示popupWindow
-//     *
-//     * @param parent
-//     */
-//    public void showPopupWindow(View parent) {
-//        if (!this.isShowing()) {
-//            // 以下拉方式显示popupwindow
-//            this.showAsDropDown(parent, parent.getLayoutParams().width / 2, 18);
-//        } else {
-//            this.dismiss();
-//        }
-//    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
+    public CustomPopupWindow(View contentView) {
+        this(contentView, ScreenUtils.getScreenWidth(contentView.getContext()), ScreenUtils.getScreenHeight(contentView.getContext())/2);
     }
 }

@@ -54,7 +54,7 @@ public class SDCardUtils
     }
 
     /**
-     * »ñget SDCard the left capacity of path
+     * get SDCard the left capacity of path
      * @param filePath
      * @return
      */

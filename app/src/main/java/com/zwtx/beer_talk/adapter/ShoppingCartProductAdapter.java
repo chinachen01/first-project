@@ -17,14 +17,14 @@ import android.widget.TextView;
 import com.zwtx.beer_talk.R;
 import com.zwtx.beer_talk.bean.ProductBean;
 
-public class ShoppingStorageAdapter extends BaseAdapter {
+public class ShoppingCartProductAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
     private ArrayList<ProductBean> mList = new ArrayList<>();
     private OnCallBackListener mCallBackListener;
     private boolean mIsChecked = true;
     private boolean mIsEdit = false;
 
-    public ShoppingStorageAdapter(Context context) {
+    public ShoppingCartProductAdapter(Context context) {
         // TODO Auto-generated constructor stub
         mInflater = LayoutInflater.from(context);
     }
@@ -94,22 +94,22 @@ public class ShoppingStorageAdapter extends BaseAdapter {
         ViewHolder holder = null;
         if (convertView == null) {
             convertView = mInflater.inflate(
-                    R.layout.item_shopping_storage_stuff_listview, null);
+                    R.layout.item_shopping_cart_product, null);
             CheckBox check = (CheckBox) convertView
-                    .findViewById(R.id.item_shopping_storage_stuff_check);
+                    .findViewById(R.id.item_shopping_cart_product_check);
             TextView count = (TextView) convertView
-                    .findViewById(R.id.item_shopping_storage_stuff_count_text);
+                    .findViewById(R.id.item_shopping_cart_product_count_text);
             Button delBtn = (Button) convertView.findViewById(R.id.item_shopping_storage_stuff_del_btn);
             Button reduceBtn = (Button) convertView
-                    .findViewById(R.id.item_shopping_storage_stuff_reduce_btn);
+                    .findViewById(R.id.item_shopping_cart_product_reduce_btn);
             Button addBtn = (Button) convertView
-                    .findViewById(R.id.item_shopping_storage_stuff_add_btn);
+                    .findViewById(R.id.item_shopping_cart_product_add_btn);
             ImageView image = (ImageView) convertView
-                    .findViewById(R.id.item_shopping_storage_stuff_image);
+                    .findViewById(R.id.item_shopping_cart_product_image);
             TextView title = (TextView) convertView
-                    .findViewById(R.id.item_shopping_storage_stuff_title_text);
+                    .findViewById(R.id.item_shopping_cart_product_title_text);
             TextView price = (TextView) convertView
-                    .findViewById(R.id.item_shopping_storage_stuff_price_text);
+                    .findViewById(R.id.item_shopping_cart_product_price_text);
             holder = new ViewHolder();
             holder.setCheck(check);
             holder.setImage(image);

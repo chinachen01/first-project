@@ -30,7 +30,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/selector_border_btn"
-            android:id="@+id/product_detail_buy_btn"
             android:text="收藏"
             />
 
@@ -51,6 +50,7 @@
             android:background="@drawable/selector_border_red_btn"
             android:text="立即购买"
             android:textColor="@android:color/white"
+            android:id="@+id/product_detail_buy_btn"
             />
     </LinearLayout>
     <LinearLayout
@@ -59,7 +59,8 @@
         android:orientation="vertical"
         android:layout_above="@id/product_detail_ly"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:paddingRight="10dp"
+        android:id="@+id/product_detail_ly1">
 
         <ImageView
             android:id="@+id/product_detail_image"
@@ -94,7 +95,7 @@
                 android:id="@+id/product_detail_share_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/selector_normal_red_btn"
+                android:background="@drawable/selector_pressed_red_btn"
                 android:text="分享"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/text_middle"

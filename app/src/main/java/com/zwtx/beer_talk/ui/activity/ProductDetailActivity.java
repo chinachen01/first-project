@@ -4,9 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -15,6 +17,7 @@ import com.zwtx.beer_talk.R;
 import com.zwtx.beer_talk.adapter.EvaluationAdapter;
 import com.zwtx.beer_talk.bean.EvaluationBean;
 import com.zwtx.beer_talk.ui.base.BaseActivity;
+import com.zwtx.beer_talk.utils.L;
 import com.zwtx.beer_talk.widget.CustomPopupWindow;
 
 import java.util.ArrayList;
@@ -26,7 +29,8 @@ import java.util.List;
 public class ProductDetailActivity extends BaseActivity {
     private ListView mEvaluationList;
     private TextView mTitleTxt;
-    private Button mShoppingCartBtn, mBuyBtn;
+    private Button mShoppingCartBtn, mBuyBtn, mShareBtn;
+    private CustomPopupWindow mPopupWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +47,13 @@ public class ProductDetailActivity extends BaseActivity {
         mShoppingCartBtn.setOnClickListener(new ProductDetailOnClickListener());
         mBuyBtn = (Button) findViewById(R.id.product_detail_buy_btn);
         mBuyBtn.setOnClickListener(new ProductDetailOnClickListener());
+        mShareBtn = (Button) findViewById(R.id.product_detail_share_btn);
+        mShareBtn.setOnClickListener(new ProductDetailOnClickListener());
         EvaluationAdapter adapter = new EvaluationAdapter(ProductDetailActivity.this);
         mEvaluationList.setAdapter(adapter);
         adapter.setDataChanged(getList());
+        View view = LayoutInflater.from(ProductDetailActivity.this).inflate(R.layout.popuewindow_product_buy, null);
+        mPopupWindow = new CustomPopupWindow(view);
     }
 
     public static void startActivity(Context context) {
@@ -92,9 +100,14 @@ public class ProductDetailActivity extends BaseActivity {
                     ShoppingCartActivity.startActivity(ProductDetailActivity.this);
                     break;
                 case R.id.product_detail_buy_btn:
-                    View view = LayoutInflater.from(ProductDetailActivity.this).inflate(R.layout.popuewindow_product_buy, null);
-                    CustomPopupWindow customPopupWindow = new CustomPopupWindow(ProductDetailActivity.this,view);
+                    if (!mPopupWindow.isShowing()) {
+                        mPopupWindow.showAsDropDown(mBuyBtn, 0, 0);
+                    } else {
+                        mPopupWindow.dismiss();
+                    }
 
+                    break;
+                case R.id.product_detail_share_btn:
                     break;
             }
         }

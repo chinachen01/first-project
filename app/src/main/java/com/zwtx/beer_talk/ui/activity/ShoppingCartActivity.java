@@ -14,7 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.zwtx.beer_talk.R;
-import com.zwtx.beer_talk.adapter.ShoppingStorageAdapter;
+import com.zwtx.beer_talk.adapter.ShoppingCartProductAdapter;
 import com.zwtx.beer_talk.bean.ProductBean;
 import com.zwtx.beer_talk.ui.base.BaseActivity;
 
@@ -25,7 +25,7 @@ public class ShoppingCartActivity extends BaseActivity {
 	private ListView mShoppingStorageListView;
 	private TextView mTotalText;
 	private CheckBox mAllSelectCheck;
-    private ShoppingStorageAdapter mAdapter;
+    private ShoppingCartProductAdapter mAdapter;
     private Button mCommitBtn,mCompleteBtn;
     private TextView mEditTxt;
     @Override
@@ -48,9 +48,9 @@ public class ShoppingCartActivity extends BaseActivity {
 			}
 		});
         //设置适配器
-		mAdapter = new ShoppingStorageAdapter(this);
+		mAdapter = new ShoppingCartProductAdapter(this);
 		mShoppingStorageListView.setAdapter(mAdapter);
-		mAdapter.setOnCheckListener(new ShoppingStorageAdapter.OnCallBackListener() {
+		mAdapter.setOnCheckListener(new ShoppingCartProductAdapter.OnCallBackListener() {
 
             @Override
             public void setTotalPrice(String total) {
