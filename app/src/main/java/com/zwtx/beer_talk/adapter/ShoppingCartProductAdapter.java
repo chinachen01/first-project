@@ -16,17 +16,25 @@ import android.widget.TextView;
 
 import com.zwtx.beer_talk.R;
 import com.zwtx.beer_talk.bean.ProductBean;
+import com.zwtx.beer_talk.bean.ShopProductBean;
+import com.zwtx.beer_talk.utils.L;
 
 public class ShoppingCartProductAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
     private ArrayList<ProductBean> mList = new ArrayList<>();
-    private OnCallBackListener mCallBackListener;
     private boolean mIsChecked = true;
     private boolean mIsEdit = false;
+    private ShoppingCartShopAdapter mShopAdapter;
 
-    public ShoppingCartProductAdapter(Context context) {
+    public ShoppingCartProductAdapter(Context context, ShoppingCartShopAdapter shoppingCartShopAdapter) {
         // TODO Auto-generated constructor stub
         mInflater = LayoutInflater.from(context);
+        mShopAdapter = shoppingCartShopAdapter;
+        mIsEdit = mShopAdapter.getIsEdit();
+    }
+    public ShoppingCartProductAdapter(Context context, ShoppingCartShopAdapter shoppingCartShopAdapter, ArrayList<ProductBean> list ) {
+        this(context,shoppingCartShopAdapter);
+        mList = list;
     }
 
     public void setDataChange(ArrayList<ProductBean> list) {
@@ -34,21 +42,6 @@ public class ShoppingCartProductAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public void setOnCheckListener(OnCallBackListener l) {
-        mCallBackListener = l;
-    }
-
-    /**
-     * 设置是否全选
-     *
-     * @param flag
-     */
-    public void setAllItemCheck(boolean flag) {
-        for (ProductBean bean : mList) {
-            bean.setIsChecked(flag);
-        }
-        notifyDataSetChanged();
-    }
 
     /**
      * 删除某项
@@ -57,8 +50,18 @@ public class ShoppingCartProductAdapter extends BaseAdapter {
      */
     private void delItem(int index) {
         mList.remove(index);
+        if (index == 0) {
+            for (int i = 0; i < mShopAdapter.getDatas().size(); i++) {
+                if (mShopAdapter.getDatas().get(i).getProducts().size() == 0) {
+                    mShopAdapter.getDatas().remove(i);
+                    mShopAdapter.notifyDataSetChanged();
+                    return;
+                }
+            }
+        }
         notifyDataSetChanged();
         updateTotalPrice();
+
     }
 
     public void setIsEdit(boolean flag) {
@@ -127,6 +130,8 @@ public class ShoppingCartProductAdapter extends BaseAdapter {
         holder.getTitle().setText(mList.get(position).getTitle());
         holder.getPrice().setText(mList.get(position).getPrice() + "");
         holder.getCount().setText(mList.get(position).getCount() + "");
+        //减少按键的点击事件
+        final ViewHolder finalHolder = holder;
         //删除按键的点击事件
         holder.getDelBtn().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,12 +147,11 @@ public class ShoppingCartProductAdapter extends BaseAdapter {
                     int num = mList.get(position).getCount();
                     num += 1;
                     mList.get(position).setCount(num);
-                    notifyDataSetChanged();
+                    finalHolder.getCount().setText(num + "");
                     updateTotalPrice();
                 }
             }
         });
-        //减少按键的点击事件
         holder.getReduceBtn().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -156,7 +160,7 @@ public class ShoppingCartProductAdapter extends BaseAdapter {
                 if (num > 0 && mList.get(position).getIsChecked()) {
                     num -= 1;
                     mList.get(position).setCount(num);
-                    notifyDataSetChanged();
+                    finalHolder.getCount().setText(num + "");
                     updateTotalPrice();
                 }
             }
@@ -167,6 +171,7 @@ public class ShoppingCartProductAdapter extends BaseAdapter {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 //回调方法,获得当前的总价格
                 mList.get(position).setIsChecked(isChecked);
+                finalHolder.getCheck().setChecked(isChecked);
                 updateTotalPrice();
             }
         });
@@ -175,20 +180,23 @@ public class ShoppingCartProductAdapter extends BaseAdapter {
             holder.getDelBtn().setVisibility(View.VISIBLE);
         else
             holder.getDelBtn().setVisibility(View.INVISIBLE);
-
         return convertView;
     }
 
     private void updateTotalPrice() {
         float totalPrice = 0;
-        for (ProductBean bean : mList) {
-            if (bean.getIsChecked()) {
-                totalPrice += bean.getPrice()
-                        * bean.getCount();
+        for (ShopProductBean bean1 : mShopAdapter.getDatas()) {
+            for (ProductBean bean : bean1.getProducts()) {
+                if (bean.getIsChecked()) {
+                    totalPrice += bean.getPrice()
+                            * bean.getCount();
+                }
             }
         }
         //回调方法,设置总价格
-        mCallBackListener.setTotalPrice(totalPrice + "");
+        mShopAdapter.listener.setTotalPrice(totalPrice + "");
+        L.d("1");
+
     }
 
     class ViewHolder {
@@ -264,15 +272,6 @@ public class ShoppingCartProductAdapter extends BaseAdapter {
             this.addBtn = addBtn;
         }
 
-    }
-
-    /**
-     * 购物车的回调接口
-     */
-    public interface OnCallBackListener {
-        void setTotalPrice(String total);
-
-        String getTotalPrice();
     }
 }
 

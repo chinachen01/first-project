@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+    >
+
+    <TextView
+        android:id="@+id/item_discount_title_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="title"
+        android:textColor="@color/text_color_black"
+        android:textSize="@dimen/text_middle"
+        />
+
+    <TextView
+        android:id="@+id/item_discount_distance_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="1.3km"
+        android:textColor="@color/text_color_black"
+        android:textSize="@dimen/text_small"
+        />
+
+    <TextView
+        android:id="@+id/item_discount_content_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/item_discount_title_txt"
+        android:textColor="@color/text_color_black"
+        android:textSize="@dimen/text_small"
+        />
+
+    <ImageView
+        android:id="@+id/item_discount_image"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@id/item_discount_content_txt"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/item_discount_image"
+        android:layout_marginTop="10dp"
+        android:background="@color/divider_gray"/>
+</RelativeLayout>

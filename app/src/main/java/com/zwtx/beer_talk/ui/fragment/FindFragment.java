@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.zwtx.beer_talk.R;
+import com.zwtx.beer_talk.ui.activity.BeerTypeActivity;
+import com.zwtx.beer_talk.ui.activity.DiscountActivity;
 import com.zwtx.beer_talk.ui.activity.ProductListActivity;
 
 public class FindFragment extends Fragment {
@@ -49,6 +51,12 @@ public class FindFragment extends Fragment {
             switch (tag) {
                 case "编辑精选故事":
                     ProductListActivity.startActivity(getActivity(), tag);
+                    break;
+                case "酒类知识库":
+                    BeerTypeActivity.startActivity(getActivity(),tag);
+                    break;
+                case "优惠活动":
+                    DiscountActivity.startActivity(getActivity(), tag);
                     break;
             }
         }

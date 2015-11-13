@@ -76,12 +76,17 @@
             android:text="完成"
             android:visibility="gone"/>
     </RelativeLayout>
-
-    <ListView
-        android:id="@+id/shopping_storage_stuff_listview"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_above="@id/shopping_storage_subtitle"
-        android:layout_below="@id/shopping_sotrage_division"></ListView>
+        android:layout_below="@id/shopping_sotrage_division">
+        <com.zwtx.beer_talk.widget.MeasureListView
+            android:id="@+id/shopping_storage_stuff_listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+/>
+    </ScrollView>
+
 
 </RelativeLayout>

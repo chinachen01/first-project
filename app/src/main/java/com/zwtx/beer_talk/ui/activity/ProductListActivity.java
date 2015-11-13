@@ -30,7 +30,7 @@ import java.util.List;
  */
 public class ProductListActivity extends BackToolBarActivity {
     public static final String TAG = "tag";
-    public static final String TAG_SEARCH = "search";
+    public static final String TAG_SEARCH = "查询列表";
     public static final String TAG_STORY = "编辑精选故事";
     private RecyclerView mRecycler;
     private ImageButton mFab;
@@ -40,8 +40,7 @@ public class ProductListActivity extends BackToolBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
-        mTag = intent.getStringExtra(TAG);
+
         initView();
     }
 
@@ -123,7 +122,9 @@ public class ProductListActivity extends BackToolBarActivity {
 
     @Override
     public void setToolbarTitle() {
-        toolbar.setTitle("查询列表");
+        Intent intent = getIntent();
+        mTag = intent.getStringExtra(TAG);
+        toolbar.setTitle(mTag);
     }
 
     private class HidingListener extends HidingRecyclerViewScrollListener {

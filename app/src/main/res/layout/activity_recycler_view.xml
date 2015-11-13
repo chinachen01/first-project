@@ -4,7 +4,6 @@
               android:layout_height="match_parent"
               android:clipToPadding="true"
               android:fitsSystemWindows="true"
-              android:orientation="vertical"
               android:background="?attr/colorPrimaryDark"
     >
     <android.support.v7.widget.RecyclerView

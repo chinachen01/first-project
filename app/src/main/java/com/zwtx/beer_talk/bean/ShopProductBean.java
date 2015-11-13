@@ -13,7 +13,7 @@ public class ShopProductBean {
     private String name;
     private int longitude;
     private int Latitude;
-    private boolean isChecked;
+    private boolean isChecked = true;
 
     public boolean isChecked() {
         return isChecked;

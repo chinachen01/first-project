@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -22,12 +21,10 @@ import com.zwtx.beer_talk.ui.activity.HomeActivity;
 import com.zwtx.beer_talk.ui.activity.ProductListActivity;
 import com.zwtx.beer_talk.utils.L;
 import com.zwtx.beer_talk.utils.T;
-import com.zwtx.beer_talk.yuyin.YuYinHelper;
+import com.zwtx.beer_talk.SDK.yuyin.YuYinHelper;
 
 import org.apache.http.Header;
 import org.json.JSONObject;
-
-import java.util.Calendar;
 
 /**
  * 显示home的界面及相关业务逻辑

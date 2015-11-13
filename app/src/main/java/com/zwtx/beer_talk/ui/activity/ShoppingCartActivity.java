@@ -15,17 +15,20 @@ import android.widget.TextView;
 
 import com.zwtx.beer_talk.R;
 import com.zwtx.beer_talk.adapter.ShoppingCartProductAdapter;
+import com.zwtx.beer_talk.adapter.ShoppingCartShopAdapter;
 import com.zwtx.beer_talk.bean.ProductBean;
+import com.zwtx.beer_talk.bean.ShopProductBean;
 import com.zwtx.beer_talk.ui.base.BaseActivity;
+import com.zwtx.beer_talk.widget.MeasureListView;
 
 /**
  * 购物车界面
  */
 public class ShoppingCartActivity extends BaseActivity {
-	private ListView mShoppingStorageListView;
+	private MeasureListView  mShoppingStorageListView;
 	private TextView mTotalText;
 	private CheckBox mAllSelectCheck;
-    private ShoppingCartProductAdapter mAdapter;
+    private ShoppingCartShopAdapter mAdapter;
     private Button mCommitBtn,mCompleteBtn;
     private TextView mEditTxt;
     @Override
@@ -37,7 +40,7 @@ public class ShoppingCartActivity extends BaseActivity {
     //初始化控件
 	private void init() {
 		mTotalText = (TextView) findViewById(R.id.shopping_storage_total_price_text);
-		mShoppingStorageListView = (ListView) findViewById(R.id.shopping_storage_stuff_listview);
+		mShoppingStorageListView = (MeasureListView ) findViewById(R.id.shopping_storage_stuff_listview);
         //设置全选按键的点击事件
 		mAllSelectCheck = (CheckBox) findViewById(R.id.shopping_storage_all_select_check);
 		mAllSelectCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
@@ -48,9 +51,9 @@ public class ShoppingCartActivity extends BaseActivity {
 			}
 		});
         //设置适配器
-		mAdapter = new ShoppingCartProductAdapter(this);
+		mAdapter = new ShoppingCartShopAdapter(this);
 		mShoppingStorageListView.setAdapter(mAdapter);
-		mAdapter.setOnCheckListener(new ShoppingCartProductAdapter.OnCallBackListener() {
+		mAdapter.setOnCallBackListener(new ShoppingCartShopAdapter.ShopOnCallBackListener() {
 
             @Override
             public void setTotalPrice(String total) {
@@ -64,7 +67,7 @@ public class ShoppingCartActivity extends BaseActivity {
                 return mTotalText.getText().toString().trim();
             }
         });
-		mAdapter.setDataChange(getData());
+		mAdapter.setDataChanged(getShopData());
         //设置提交按钮
         mCommitBtn = (Button) findViewById(R.id.shopping_storage_commit);
         mCommitBtn.setOnClickListener(new StorageOnClickListener());
@@ -86,9 +89,8 @@ public class ShoppingCartActivity extends BaseActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.shopping_storage_commit:
-                    ArrayList<ProductBean> list = mAdapter.getData();
-                    for (ProductBean bean : list) {
-                        Log.d("tag", "标题是:" + bean.getTitle() + "数量是:" + bean.getCount() + "价格是:" + mTotalText.getText());
+                    ArrayList<ShopProductBean> list = mAdapter.getDatas();
+                    for (ShopProductBean bean : list) {
                     }
                     break;
                 case R.id.shopping_storage_edit_text:
@@ -112,69 +114,61 @@ public class ShoppingCartActivity extends BaseActivity {
         context.startActivity(intent);
     }
 
+    private ArrayList<ShopProductBean> getShopData() {
+        ArrayList<ShopProductBean> list = new ArrayList<>();
+        ShopProductBean shopProductBean = new ShopProductBean();
+        shopProductBean.setName("九眼桥酒吧");
+        shopProductBean.setProducts(getData());
+        list.add(shopProductBean);
+        shopProductBean = new ShopProductBean();
+        shopProductBean.setName("九眼桥酒吧");
+        shopProductBean.setProducts(getData());
+        list.add(shopProductBean);
+        shopProductBean = new ShopProductBean();
+        shopProductBean.setName("九眼桥酒吧");
+        shopProductBean.setProducts(getData());
+        list.add(shopProductBean);
+        shopProductBean = new ShopProductBean();
+        shopProductBean.setName("九眼桥酒吧");
+        shopProductBean.setProducts(getData());
+        list.add(shopProductBean);
+        shopProductBean = new ShopProductBean();
+        shopProductBean.setName("九眼桥酒吧");
+        shopProductBean.setProducts(getData());
+        list.add(shopProductBean);
+        shopProductBean = new ShopProductBean();
+        shopProductBean.setName("九眼桥酒吧");
+        shopProductBean.setProducts(getData());
+        list.add(shopProductBean);
+        return list;
+    }
     //网络获取购物车信息
     private ArrayList<ProductBean> getData() {
 		ArrayList<ProductBean> list = new ArrayList<ProductBean>();
 		ProductBean bean = new ProductBean();
 		bean.setCount(1);
-		bean.setImage(R.drawable.listimage1);
+		bean.setImage(R.drawable.test_story);
 		bean.setPrice(1);
-		bean.setTitle("火锅");
+		bean.setTitle("52°五粮液");
 		list.add(bean);
 		bean = new ProductBean();
 		bean.setCount(1);
-		bean.setImage(R.drawable.listimage2);
+		bean.setImage(R.drawable.test_story);
 		bean.setPrice(1);
-		bean.setTitle("中餐");
+		bean.setTitle("52°五粮液");
 		list.add(bean);
-		bean = new ProductBean();
-		bean.setCount(1);
-		bean.setImage(R.drawable.listimage3);
-		bean.setPrice(1);
-		bean.setTitle("西餐");
-		list.add(bean);
-		bean = new ProductBean();
-		bean.setCount(1);
-		bean.setImage(R.drawable.listimage4);
-		bean.setPrice(1);
-		bean.setTitle("寿司");
-		list.add(bean);
-		bean = new ProductBean();
-		bean.setCount(1);
-		bean.setImage(R.drawable.listimage2);
-		bean.setPrice(1);
-		bean.setTitle("鱼刺");
-		list.add(bean);
-		bean = new ProductBean();
-		bean.setCount(1);
-		bean.setImage(R.drawable.listimage3);
-		bean.setPrice(1);
-		bean.setTitle("苹果");
-		list.add(bean);
-		bean = new ProductBean();
-		bean.setCount(1);
-		bean.setImage(R.drawable.listimage4);
-		bean.setPrice(1);
-		bean.setTitle("香蕉");
-		list.add(bean);
-		bean = new ProductBean();
-		bean.setCount(1);
-		bean.setImage(R.drawable.listimage2);
-		bean.setPrice(1);
-		bean.setTitle("栗子");
-		list.add(bean);
-		bean = new ProductBean();
-		bean.setCount(1);
-		bean.setImage(R.drawable.listimage3);
-		bean.setPrice(1);
-		bean.setTitle("橘子");
-		list.add(bean);
-		bean = new ProductBean();
-		bean.setCount(1);
-		bean.setImage(R.drawable.listimage4);
-		bean.setPrice(1);
-		bean.setTitle("葡萄");
-		list.add(bean);
+        bean = new ProductBean();
+        bean.setCount(1);
+        bean.setImage(R.drawable.test_story);
+        bean.setPrice(1);
+        bean.setTitle("52°五粮液");
+        list.add(bean);
+        bean = new ProductBean();
+        bean.setCount(1);
+        bean.setImage(R.drawable.test_story);
+        bean.setPrice(1);
+        bean.setTitle("52°五粮液");
+        list.add(bean);
 		return list;
 	}
 
